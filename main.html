@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournoi Emotes Twitch</title>
+    <title>Tournoi Sons du DG</title>
     <style>
         * {
             margin: 0;
@@ -100,6 +100,38 @@
             color: #888;
         }
 
+                .center-title {
+            text-align: center;
+            flex: 1;
+            display: flex;           
+            align-items: center;    
+            justify-content: center; 
+        }
+
+        .center-title h2 {
+            color: #2d7aff;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            line-height: 1;
+            display: flex;           /* AJOUTER */
+            align-items: center;     /* AJOUTER */
+            justify-content: center; /* AJOUTER */
+            gap: 10px;              /* AJOUTER - Espace entre images et texte */
+        }
+
+        .center-title h2 img {
+            vertical-align: middle; /* AJOUTER */
+            height: 2.5em;          /* AJOUTER - Taille proportionnelle au texte */
+            width: auto;            /* AJOUTER - Garde les proportions */
+        }   
+
+        .center-title h2 img:last-child {
+            transform: scaleX(-1); /* Miroir horizontal de la dernière image */
+        }
+
         /* Title GIF Modal */
         .title-gif-modal {
             position: fixed;
@@ -170,8 +202,8 @@
         /* Podium */
         .podium {
             position: absolute;
-            top: 500px;
-            right: 230px;
+            top: 550px;
+            right: 252px;
             width: 500px;
             height: 430px;
             background: rgba(0, 0, 0, 0.2);
@@ -381,18 +413,6 @@
         }
 
         /* Spécifique pour la pré-sélection */
-        .preselection-round {
-            background: rgba(255, 165, 0, 0.1);
-            border: 2px solid rgba(255, 165, 0, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-right: 30px;
-        }
-
-        .preselection-round .round-title {
-            color: #ffa500;
-            text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
-        }
 
         .match {
             margin-bottom: 20px;
@@ -400,20 +420,20 @@
             background: rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             padding: 5px;
-            border: 1px solid rgba(45, 122, 255, 0.3);
+            border: 1px solid rgba(45, 122, 255, 0.8);
             transition: border-color 0.3s ease;
         }
 
         .match:hover {
-            border-color: rgba(45, 122, 255, 0.6);
+            border-color: 1px solid rgba(45, 122, 255, 0.8);
         }
 
         .preselection-round .match {
-            border-color: rgba(255, 165, 0, 0.3);
+            border-color: 1px solid rgba(45, 122, 255, 0.8);
         }
 
         .preselection-round .match:hover {
-            border-color: rgba(255, 165, 0, 0.6);
+            border-color: 1px solid rgba(45, 122, 255, 0.8);
         }
 
         .participant {
@@ -533,8 +553,8 @@
         /* Third place match */
         .third-place-match {
             position: absolute;
-            top: 238px;
-            right: 378px;
+            top: 338px;
+            right: 350px;
             background: rgba(0, 0, 0, 0.2);
             border: 2px solid rgba(45, 122, 255, 0.3);
             border-radius: 10px;
@@ -845,7 +865,10 @@
         <div class="tournament-header">
             <div class="tournament-info">
                 <h1 class="tournament-title" onclick="showTitleGif()">TONEEUW</h1>
-                <p class="tournament-subtitle">Tournoi des Emotes - 36 Emotes avec Pré-sélection</p>
+            </div>
+
+            <div class="center-title">
+                <h2 class="clickable-subtitle" onclick="showRPVideo()"><img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1a48f8cf505246f0b205799c73829cfb/static/light/2.0"> Meilleur son du DG ici <img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1a48f8cf505246f0b205799c73829cfb/static/light/2.0"></h2>
             </div>
             
             <!-- Controls -->
@@ -865,6 +888,20 @@
                     <source src="https://i.imgur.com/S0vPnlP.mp4" type="video/mp4">
                     <div style="width: 1000px; height: 563px; background: rgba(45, 122, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #2d7aff; font-size: 24px; border-radius: 10px;">
                         TONEEUW - Vidéo non supportée
+                    </div>
+                </video>
+                <div class="title-gif-hint">Cliquez sur le X ou appuyez sur Échap pour fermer</div>
+            </div>
+        </div>
+
+        <!-- RP Video Modal -->
+        <div class="title-gif-modal" id="rp-video-modal">
+            <div class="title-gif-content">
+                <button class="title-gif-close" onclick="hideRPVideo()">×</button>
+                <video class="title-gif-video" controls loop playsinline>
+                    <source src="https://i.imgur.com/uRMw2KA.mp4" type="video/mp4">
+                    <div style="width: 800px; height: 450px; background: rgba(45, 122, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #2d7aff; font-size: 24px; border-radius: 10px;">
+                        Vidéo RP - Vidéo non supportée
                     </div>
                 </video>
                 <div class="title-gif-hint">Cliquez sur le X ou appuyez sur Échap pour fermer</div>
@@ -937,7 +974,8 @@
         <!-- Champion Modal -->
         <div class="champion-modal" id="champion-modal">
             <div class="champion-content">
-                <div class="champion-title">Champion!</div>
+                <div class="champion-title">WINNER WINNER</div>
+                <div class="champion-title">CHICKEN DINNER</div>
                 <img class="champion-emote" id="champion-emote-display" src="" alt="Champion">
                 <div class="champion-subtitle" id="champion-name-display">Emote Championne</div>
                 <div class="champion-close-hint">Appuyez sur Échap pour fermer</div>
@@ -947,18 +985,11 @@
         <!-- Welcome Modal -->
         <div class="welcome-modal" id="welcome-modal">
             <div class="welcome-content">
-                <h2>Nouveau Format de Tournoi!</h2>
-                <h3><img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_459101742a7c45cc856d2d6964af4eb2/animated/light/3.0" style="width: 56px; height: 56px; vertical-align: middle;"> 36 EMOTES <img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_459101742a7c45cc856d2d6964af4eb2/animated/light/3.0" style="width: 56px; height: 56px; vertical-align: middle;"></h3>
-                <p>Bienvenue dans le nouveau tournoi des emotes de </p>
-                <p><strong><span style="font-size: 1.5em; color: #4d8aff; text-shadow: 0 0 10px rgba(77, 138, 255, 0.5);">TONE2TWITCHDUREWINDTOP16ZLAN</span></strong></p>
+                <h2>Bravo pour les ??? subs vous avez débloqué: </h2>
+                <h3><img src="https://static-cdn.jtvnw.net/emoticons/v2/302867537/static/light/3.0" style="width: 56px; height: 56px; vertical-align: middle;"> LA BAGARE² <img src="https://static-cdn.jtvnw.net/emoticons/v2/302867537/static/light/3.0" style="width: 56px; height: 56px; vertical-align: middle;"></h3>
+                <p>Bienvenue dans le nouveau tournoi des sons </p>
+                <p><strong><span style="font-size: 1.5em; color: #4d8aff; text-shadow: 0 0 10px rgba(77, 138, 255, 0.5);"> de TONE et du DONUT'S GANG </span></strong></p>
                 <p><img src="https://i.imgur.com/1UziwHJ.png" style="width: 400px; height: 240px; vertical-align: middle;"></p>
-                <p><strong>Format spécial :</strong></p>
-                <p>📊 <strong>Pré-sélection :</strong> 4 matchs (8 emotes → 4 qualifiées)</p>
-                <p>🎯 <strong>Premier tour :</strong> 16 matchs (4 qualifiées + 28 emotes directes)</p>
-                <p>⚔️ Puis tournoi standard : 2ème tour, Quarts, Demi-finales, Finale</p>
-                <div class="welcome-buttons">
-                    <button class="welcome-button" onclick="triggerEmoteImport()">Commencer le Tournoi</button>
-                    <button class="welcome-button secondary" onclick="startEmptyTournament()">Commencer sans emotes</button>
                 </div>
             </div>
         </div>
@@ -966,20 +997,20 @@
         <!-- Help Panel -->
         <div class="help-panel" id="help-panel" style="display: none;">
             <div class="help-content">
-                <h3><img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0e6305b39c1249d2a8451cfb4662acf9/static/light/2.0" style="width: 28px; height: 28px; vertical-align: middle;"> Guide du Tournoi <img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0e6305b39c1249d2a8451cfb4662acf9/static/light/2.0" style="width: 28px; height: 28px; vertical-align: middle;"></h3>
+                <h3><img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0e6305b39c1249d2a8451cfb4662acf9/static/light/2.0" style="width: 28px; height: 28px; vertical-align: middle;"> T'as besoin d'aide? <img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0e6305b39c1249d2a8451cfb4662acf9/static/light/2.0" style="width: 28px; height: 28px; vertical-align: middle;"></h3>
                 <div class="help-section">
-                    <h4>Nouveau Format (36 emotes) :</h4>
-                    <p><strong>Pré-sélection :</strong> 8 emotes dans 4 matchs → 4 gagnantes</p>
-                    <p><strong>Premier Tour :</strong> 32 emotes (4 de pré-sélection + 28 directes) → 16 matchs</p>
-                    <p><strong>2ème Tour :</strong> 16 emotes → 8 matchs</p>
-                    <p><strong>Quarts :</strong> 8 emotes → 4 matchs</p>
-                    <p><strong>Demi-finales :</strong> 4 emotes → 2 matchs + match 3ème place</p>
-                    <p><strong>Finale :</strong> 2 emotes → 1 match</p>
+                    <h4>Nouveau Format (36 sons) :</h4>
+                    <p><strong>Pré-sélection :</strong> 8 sons dans 4 matchs → 4 gagnants</p>
+                    <p><strong>Premier Tour :</strong> 32 sons (4 de pré-sélection + 28 directes) → 16 matchs</p>
+                    <p><strong>2ème Tour :</strong> 16 sons → 8 matchs</p>
+                    <p><strong>Quarts :</strong> 8 sons → 4 matchs</p>
+                    <p><strong>Demi-finales :</strong> 4 sons → 2 matchs + match 3ème place</p>
+                    <p><strong>Finale :</strong> 2 sons → 1 match</p>
                 </div>
                 <div class="help-section">
                     <h4>Utilisation :</h4>
-                    <p><strong>Vote :</strong> Clique sur l'emote gagnante dans chaque match</p>
-                    <p><strong>Zoom :</strong> Passe la souris sur une emote pour l'agrandir</p>
+                    <p><strong>Vote :</strong> Clique sur le son gagnant dans chaque match</p>
+                    <p><strong>Zoom :</strong> Passe la souris sur une cover pour l'agrandir</p>
                     <p><strong>Exporter/Importer :</strong> Sauvegarde et partage ton tournoi</p>
                 </div>
                 <button class="control-button" onclick="hideHelp()">Fermer</button>
@@ -993,48 +1024,8 @@
         let defaultEmotes = []; // Sera chargé depuis un fichier JSON externe
         
         // Configuration du fichier JSON externe
-        const EMOTES_JSON_URL = './emotes.json'; // Changez ce chemin selon vos besoins
+        const EMOTES_JSON_URL = 'https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Import%20Sons.json'; // Changez ce chemin selon vos besoins
         
-        // Emotes de fallback au cas où le chargement externe échoue
-        const fallbackEmotes = [
-            {"name": "Admin", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_95b1b60b25a54c4fb5579e01016aa341/animated/light/3.0"},
-            {"name": "Bibiche", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e85e6d262d844c4c85a9969d47eb8aa0/static/light/3.0"},
-            {"name": "Cry", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234955/static/light/3.0"},
-            {"name": "DG", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302867537/static/light/3.0"},
-            {"name": "DGRave", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_fbcf13fa90d24de6b7071dee5531b73f/animated/light/3.0"},
-            {"name": "DODO", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_708f44ec0c3a42508ebb92d4470ee843/static/light/3.0"},
-            {"name": "Dab", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234939/static/light/3.0"},
-            {"name": "Danse", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e8f7034a2dc247ea83fb328f83d15ef9/animated/light/3.0"},
-            {"name": "Dinde", "image": "https://static-cdn.jtvnw.net/emoticons/v2/305245068/static/light/3.0"},
-            {"name": "DoubleSuper", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1a48f8cf505246f0b205799c73829cfb/static/light/3.0"},
-            {"name": "Fier", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_60f3c2e5ff724003a00833b68e2c183e/static/light/3.0"},
-            {"name": "Flag", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d5aec45eff194aeba447b995bb5ebd39/animated/light/3.0"},
-            {"name": "Fume", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302866775/static/light/3.0"},
-            {"name": "GANG", "image": "https://static-cdn.jtvnw.net/emoticons/v2/301526652/static/light/3.0"},
-            {"name": "GRONUTS", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a8e7aed94ead472b8218d114b728b7d5/animated/light/3.0"},
-            {"name": "Gasm", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302866790/static/light/3.0"},
-            {"name": "Gasmm", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_85a0a3481c894efebb3dc20a7743926c/static/light/3.0"},
-            {"name": "Gg", "image": "https://static-cdn.jtvnw.net/emoticons/v2/301360051/static/light/3.0"},
-            {"name": "Happy", "image": "https://static-cdn.jtvnw.net/emoticons/v2/301022884/static/light/3.0"},
-            {"name": "Havane", "image": "https://static-cdn.jtvnw.net/emoticons/v2/300926816/static/light/3.0"},
-            {"name": "Kappa", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ac3162dd3374466fbde4f43345e9e060/static/light/3.0"},
-            {"name": "LOL", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_c7c737c38e10494c9f84fe8db674ddb0/animated/light/3.0"},
-            {"name": "LUL", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234944/static/light/3.0"},
-            {"name": "Love", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234948/static/light/3.0"},
-            {"name": "MONEY", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_913ce9f0a20b45d8bb5a0280ef3a4a87/static/light/3.0"},
-            {"name": "NoStonks", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_13e88e2c9af74140badb3173fcf0618a/static/light/3.0"},
-            {"name": "NotLikeThis", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0e6305b39c1249d2a8451cfb4662acf9/static/light/3.0"},
-            {"name": "Note", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_510ac7e8564d4cc5a0b0bf76e8991f47/animated/light/3.0"},
-            {"name": "Party", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_79abb603ca2c45afae72f094c31b463a/animated/light/3.0"},
-            {"name": "Peur", "image": "https://static-cdn.jtvnw.net/emoticons/v2/307664086/static/light/3.0"},
-            {"name": "Pipo", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302866823/static/light/3.0"},
-            {"name": "Pog", "image": "https://static-cdn.jtvnw.net/emoticons/v2/301071993/static/light/3.0"},
-            {"name": "Pray", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_c03311c9e5464f19a15803bc09aa23b1/static/light/3.0"},
-            {"name": "Rage", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234950/static/light/3.0"},
-            {"name": "Thinking", "image": "https://static-cdn.jtvnw.net/emoticons/v2/302234940/static/light/3.0"},
-            {"name": "UwU", "image": "https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_be59377a65ca458d8245035abc3a04a7/static/light/3.0"}
-        ];
-
         // Fonction pour charger les emotes depuis un fichier JSON externe
         async function loadEmotesFromJSON() {
             try {
@@ -1533,9 +1524,27 @@
             const thirdPlace = thirdPlaceMatch?.querySelector('.participant.winner');
             
             if (champion) {
+                const firstPlaceContainer = document.querySelector('.podium-place.first-place');
                 const firstPlace = document.getElementById('first-place');
-                firstPlace.innerHTML = '';
+                
                 const championImg = champion.querySelector('img');
+                const championName = champion.querySelector('.participant-name').textContent;
+                
+                // Nettoyer le nom existant s'il y en a un
+                const existingName = firstPlaceContainer.querySelector('.podium-winner-name');
+                if (existingName) {
+                    existingName.remove();
+                }
+                
+                // Ajouter le nom au-dessus du conteneur d'emote
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'podium-winner-name';
+                nameDiv.style.cssText = 'font-size: 12px; color: #ffd700; font-weight: bold; margin-bottom: 5px; text-align: center; width: 100%; position: absolute; top: -30px; left: 0; z-index: 10;';
+                nameDiv.textContent = championName;
+                firstPlaceContainer.appendChild(nameDiv);
+                
+                // Mettre à jour l'emote
+                firstPlace.innerHTML = '';
                 if (championImg) {
                     const podiumImg = championImg.cloneNode(true);
                     firstPlace.appendChild(podiumImg);
@@ -1544,14 +1553,32 @@
                         firstPlace.style.transform = 'scale(1)';
                     }, 300);
                 } else {
-                    firstPlace.innerHTML = '<span style="font-size: 24px;">🥇</span>';
+                    firstPlace.innerHTML = '<span style="font-size: 32px;">🥇</span>';
                 }
             }
             
             if (runnerUp) {
+                const secondPlaceContainer = document.querySelector('.podium-place.second-place');
                 const secondPlace = document.getElementById('second-place');
-                secondPlace.innerHTML = '';
+                
                 const runnerUpImg = runnerUp.querySelector('img');
+                const runnerUpName = runnerUp.querySelector('.participant-name').textContent;
+                
+                // Nettoyer le nom existant s'il y en a un
+                const existingName = secondPlaceContainer.querySelector('.podium-winner-name');
+                if (existingName) {
+                    existingName.remove();
+                }
+                
+                // Ajouter le nom au-dessus du conteneur d'emote
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'podium-winner-name';
+                nameDiv.style.cssText = 'font-size: 12px; color: #c0c0c0; font-weight: bold; margin-bottom: 5px; text-align: center; width: 100%; position: absolute; top: -30px; left: 0; z-index: 10;';
+                nameDiv.textContent = runnerUpName;
+                secondPlaceContainer.appendChild(nameDiv);
+                
+                // Mettre à jour l'emote
+                secondPlace.innerHTML = '';
                 if (runnerUpImg) {
                     const podiumImg = runnerUpImg.cloneNode(true);
                     secondPlace.appendChild(podiumImg);
@@ -1560,14 +1587,32 @@
                         secondPlace.style.transform = 'scale(1)';
                     }, 300);
                 } else {
-                    secondPlace.innerHTML = '<span style="font-size: 20px;">🥈</span>';
+                    secondPlace.innerHTML = '<span style="font-size: 28px;">🥈</span>';
                 }
             }
             
             if (thirdPlace) {
+                const thirdPlaceContainer = document.querySelector('.podium-place.third-place');
                 const thirdPlaceDiv = document.getElementById('third-place');
-                thirdPlaceDiv.innerHTML = '';
+                
                 const thirdImg = thirdPlace.querySelector('img');
+                const thirdName = thirdPlace.querySelector('.participant-name').textContent;
+                
+                // Nettoyer le nom existant s'il y en a un
+                const existingName = thirdPlaceContainer.querySelector('.podium-winner-name');
+                if (existingName) {
+                    existingName.remove();
+                }
+                
+                // Ajouter le nom au-dessus du conteneur d'emote
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'podium-winner-name';
+                nameDiv.style.cssText = 'font-size: 12px; color: #cd7f32; font-weight: bold; margin-bottom: 5px; text-align: center; width: 100%; position: absolute; top: -30px; left: 0; z-index: 10;';
+                nameDiv.textContent = thirdName;
+                thirdPlaceContainer.appendChild(nameDiv);
+                
+                // Mettre à jour l'emote
+                thirdPlaceDiv.innerHTML = '';
                 if (thirdImg) {
                     const podiumImg = thirdImg.cloneNode(true);
                     thirdPlaceDiv.appendChild(podiumImg);
@@ -1820,6 +1865,20 @@
                 }
             }
         });
+
+        // Show/Hide RP Video Modal
+        function showRPVideo() {
+            document.getElementById('rp-video-modal').style.display = 'flex';
+        }
+
+        function hideRPVideo() {
+            const modal = document.getElementById('rp-video-modal');
+            const video = modal.querySelector('video');
+            video.pause(); // Pause la vidéo quand on ferme
+            video.currentTime = 0; // Remet au début
+            modal.style.display = 'none';
+        }
+
 
         // Handle clicks on title GIF modal background to close it
         document.getElementById('title-gif-modal').addEventListener('click', function(e) {
