@@ -120,16 +120,16 @@
             letter-spacing: 2px;
             margin: 0;
             line-height: 1;
-            display: flex;           /* AJOUTER */
-            align-items: center;     /* AJOUTER */
-            justify-content: center; /* AJOUTER */
-            gap: 10px;              /* AJOUTER - Espace entre images et texte */
+            display: flex;           
+            align-items: center;    
+            justify-content: center; 
+            gap: 10px;              
         }
 
         .center-title h2 img {
-            vertical-align: middle; /* AJOUTER */
-            height: 2.5em;          /* AJOUTER - Taille proportionnelle au texte */
-            width: auto;            /* AJOUTER - Garde les proportions */
+            vertical-align: middle;
+            height: 2.5em;         
+            width: auto;          
         }   
 
         .center-title h2 img:first-child {
@@ -873,8 +873,8 @@
             pointer-events: none;
             z-index: 2000;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(45, 122, 255, 0.8);
-            animation: clickEmoteFloat 2s ease-out forwards;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            animation: clickEmoteFloat 1.5s ease-out forwards;
         }
 
         @keyframes clickEmoteFloat {
@@ -882,9 +882,13 @@
                 transform: scale(0) rotate(180deg);
                 opacity: 1;
             }
-            50% {
+            45% {
                 transform: scale(1.2) rotate(0deg);
-                opacity: 0.8;
+                opacity: 1;
+            }
+            55% {
+                transform: scale(1.2) rotate(0deg);
+                opacity: 1;
             }
             100% {
                 transform: scale(0.3) rotate(180deg) translateY(-100px);
@@ -916,28 +920,26 @@
         <!-- Title GIF Modal -->
         <div class="title-gif-modal" id="title-gif-modal">
             <div class="title-gif-content">
-                <button class="title-gif-close" onclick="hideTitleGif()">×</button>
                 <video class="title-gif-video" autoplay loop muted playsinline>
                     <source src="https://i.imgur.com/S0vPnlP.mp4" type="video/mp4">
                     <div style="width: 1000px; height: 563px; background: rgba(45, 122, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #2d7aff; font-size: 24px; border-radius: 10px;">
                         TONEEUW - Vidéo non supportée
                     </div>
                 </video>
-                <div class="title-gif-hint">Cliquez sur le X ou appuyez sur Échap pour fermer</div>
+                <div class="title-gif-hint">Échap pour fermer</div>
             </div>
         </div>
 
         <!-- RP Video Modal -->
         <div class="title-gif-modal" id="rp-video-modal">
             <div class="title-gif-content">
-                <button class="title-gif-close" onclick="hideRPVideo()">×</button>
                 <video class="title-gif-video" controls loop playsinline>
                     <source src="https://i.imgur.com/uRMw2KA.mp4" type="video/mp4">
                     <div style="width: 800px; height: 450px; background: rgba(45, 122, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #2d7aff; font-size: 24px; border-radius: 10px;">
                         Vidéo RP - Vidéo non supportée
                     </div>
                 </video>
-                <div class="title-gif-hint">Cliquez sur le X ou appuyez sur Échap pour fermer</div>
+                <div class="title-gif-hint">Échap pour fermer</div>
             </div>
         </div>
 
@@ -991,7 +993,6 @@
                     <p><strong>Zoom :</strong> Passe la souris sur une cover pour l'agrandir</p>
                     <p><strong>Exporter/Importer :</strong> Sauvegarde et partage ton tournoi</p>
                 </div>
-                <button class="control-button" onclick="hideHelp()">Fermer</button>
             </div>
         </div>
     </div>
@@ -1002,7 +1003,7 @@
         let defaultEmotes = []; // Sera chargé depuis un fichier JSON externe
         
         // Configuration du fichier JSON externe
-        const EMOTES_JSON_URL = 'https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Import%20Sons.json'; // Changez ce chemin selon vos besoins
+        const EMOTES_JSON_URL = 'https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Import%20Sons.json'; 
         
         // Fonction pour charger les emotes depuis un fichier JSON externe
         async function loadEmotesFromJSON() {
@@ -1897,6 +1898,8 @@
             if (e.key === 'Escape') {
                 if (document.getElementById('title-gif-modal').style.display === 'flex') {
                     hideTitleGif();
+                } else if (document.getElementById('rp-video-modal').style.display === 'flex') {
+                    hideRPVideo();
                 } else if (document.getElementById('champion-modal').style.display === 'flex') {
                     hideChampionModal();
                 } else if (document.getElementById('help-panel').style.display !== 'none') {
