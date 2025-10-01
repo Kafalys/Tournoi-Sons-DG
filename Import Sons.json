@@ -6,142 +6,177 @@
   },
   {
     "name": "BIBICHE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/BIBICHE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/BIBICHE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/BIBICHE.mp3"
   },
   {
     "name": "J'AI PRIS LE LARGE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/J%20AI%20PRIS%20LE%20LARGE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/J%20AI%20PRIS%20LE%20LARGE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/J%27AI%20PRIS%20LE%20LARGE.mp3"
   },
   {
     "name": "SOMBRALS",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/SOMBRALS.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/SOMBRALS.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/SOMBRALS.mp3"
   },
   {
     "name": "MISERE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/MISERE.mp3"
   },
   {
     "name": "PETALES",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/PETALES.mp3"
   },
   {
     "name": "KEEP IT REAL",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/KEEP-IT-REAL.mp3"
   },
   {
     "name": "SOUS LA FOUDRE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/SOUS-LA-FOUDRE.mp3"
   },
   {
     "name": "SAUVAGE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/SAUVAGE.mp3"
   },
   {
     "name": "SALISSURES",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/MISERE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/SALISSURES.mp3"
   },
   {
     "name": "J'REGRETTE PAS",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/JREGRETTE%20PAS.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/JREGRETTE%20PAS.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/J%27REGRETTE%20PAS.mp3"
   },
   {
     "name": "LEVIATHAN",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/LEVIATHAN.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/LEVIATHAN.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/LEVIATHAN.mp3"
   },
   {
     "name": "A CAUSE DE TOI",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/A%20CAUSE%20DE%20TOI.mp3"
   },
   {
     "name": "JE SUIS",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/JE%20SUIS.mp3"
   },
   {
     "name": "INVISIBLE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/INVISIBLE.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/INVISIBLE.mp3"
   },
   {
     "name": "GOYAVE REWORK",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT%20REWORK.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT%20REWORK.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/GOYAVE%20REWORK.mp3"
   },
   {
     "name": "CONSCIENCE REWORK",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT%20REWORK.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT%20REWORK.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/CONSCIENCE%20REWORK.mp3"
   },
   {
     "name": "FV",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/FV.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/FV.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/FV.mp3"
   },
   {
     "name": "RPZ",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/RPZ.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/RPZ.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/RPZ.mp3"
   },
   {
     "name": "O'NEIL",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/O%20NEIL.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/O%20NEIL.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/O%20NEIL.mp3"
   },
   {
     "name": "A COEUR OUVERT",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/A%20COEUR%20OUVERT.mp3"
   },
   {
     "name": "NIKELELSPD",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/NIKELELSPD.mp3"
   },
   {
     "name": "AVALANCHE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/AVALANCHE.mp3"
   },
   {
     "name": "GOYAVE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/GOYAVE.mp3"
   },
   {
     "name": "ROUTINE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/ROUTINE.mp3"
   },
   {
     "name": "PACIFIQUE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/PACIFIQUE.mp3"
   },
   {
     "name": "CONFIANCE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/CONFIANCE.mp3"
   },
   {
     "name": "GERALD",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/GERALD.mp3"
   },
   {
     "name": "PEDILUVE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/PEDILUVE.mp3"
   },
   {
     "name": "DANTON",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/DANTON.mp3"
   },
   {
     "name": "BRANNAN",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/BRANNAN.mp3"
   },
   {
     "name": "JLC",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/JLC.mp3"
   },
   {
     "name": "BAVURE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/BAVURE.mp3"
   },
   {
     "name": "SOUVENIR",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/SOUVENIR.mp3"
   },
   {
     "name": "CA ROULE VITE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/CA%20ROULE%20VITE.mp3"
   },
   {
     "name": "CONSCIENCE",
-    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png"
+    "image": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Images/A%20COEUR%20OUVERT.png",
+    "sound": "https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Sons/CONSCIENCE.mp3"
   }
 ]
