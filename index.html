@@ -549,6 +549,81 @@
             gap: 10px;
         }
 
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Volume Control */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(45, 122, 255, 0.3);
+            width: 100%;
+        }     
+
+        .volume-label {
+            font-size: 0.9em;
+            color: #2d7aff;
+            font-weight: bold;
+            min-width: 60px;
+        }
+
+        .volume-slider {
+            flex: 1;  /* Prend tout l'espace disponible */
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+        }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #2d7aff, #1a5ecf);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: linear-gradient(135deg, #4d8aff, #2a6edf);
+            transform: scale(1.2);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #2d7aff, #1a5ecf);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-moz-range-thumb:hover {
+            background: linear-gradient(135deg, #4d8aff, #2a6edf);
+            transform: scale(1.2);
+        }
+
+        .volume-percentage {
+            font-size: 0.9em;
+            color: #4d8aff;
+            font-weight: bold;
+            min-width: 35px;
+            text-align: right;
+        }        
+
+
         .control-button {
             background: linear-gradient(135deg, #2d7aff, #1a5ecf);
             color: white;
@@ -909,12 +984,19 @@
             </div>
             
             <!-- Controls -->
-            <div class="controls">
-                <button class="control-button" onclick="resetTournament()">Reset Tournoi</button>
-                <button class="control-button" onclick="exportResults()">Exporter</button>
-                <button class="control-button" onclick="importResults()">Importer</button>
-                <button class="control-button" onclick="showHelp()">Aide</button>
-            </div>
+            <div class="controls-wrapper">
+                <div class="controls">
+                    <button class="control-button" onclick="resetTournament()">Reset Tournoi</button>
+                    <button class="control-button" onclick="exportResults()">Exporter</button>
+                    <button class="control-button" onclick="importResults()">Importer</button>
+                    <button class="control-button" onclick="showHelp()">Aide</button>
+                </div>
+                <div class="volume-control">
+                    <label class="volume-label">Volume</label>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+                    <span class="volume-percentage" id="volume-percentage">50%</span>
+                </div>
+            </div>        
         </div>
 
         <!-- Title GIF Modal -->
@@ -1000,8 +1082,126 @@
     <script>
         // Variables globales
         let tournamentData = {};
-        let defaultEmotes = []; // Sera chargé depuis un fichier JSON externe
-        
+        let defaultEmotes = []; 
+
+        // Variables pour le système audio
+        let audioCache = {};
+        let currentVolume = 0.5;
+
+        // Fonction pour précharger les sons
+        async function preloadSounds() {
+            console.log('🔊 Préchargement des sons en arrière-plan...');
+            
+            // Ne pas attendre, lancer en arrière-plan
+            setTimeout(async () => {
+                let loadedCount = 0;
+                let errorCount = 0;
+
+                for (const emote of defaultEmotes) {
+                    if (emote.sound) {
+                        try {
+                            const audio = new Audio();
+                            audio.preload = 'auto';
+                            audio.volume = currentVolume;
+                            
+                            audio.oncanplaythrough = () => {
+                                loadedCount++;
+                                console.log(`✅ Son chargé (${loadedCount}/${defaultEmotes.length}): ${emote.name}`);
+                            };
+                            audio.onerror = () => {
+                                errorCount++;
+                                console.warn(`⚠️ Impossible de charger le son pour: ${emote.name}`);
+                            };
+                            audio.src = emote.sound;
+                            
+                            audioCache[emote.sound] = audio;
+                        } catch (error) {
+                            errorCount++;
+                            console.warn(`⚠️ Erreur lors du chargement de: ${emote.name}`, error);
+                        }
+                    }
+                }
+                
+                console.log(`✅ Préchargement terminé: ${loadedCount} réussis, ${errorCount} échecs`);
+            }, 100); // Démarre 100ms après pour ne pas bloquer
+        }
+
+        // Fonction pour jouer un son
+        function playSound(soundUrl) {
+            if (!soundUrl) {
+                console.warn('⚠️ Aucune URL de son fournie');
+                return;
+            }
+            
+            console.log('🔊 Tentative de lecture du son:', soundUrl);
+            
+            try {
+                // Créer un nouvel objet Audio à chaque fois pour éviter les problèmes de cache
+                const audio = new Audio();
+                audio.volume = currentVolume;
+                audio.crossOrigin = "anonymous"; // Ajouter pour éviter les problèmes CORS
+                
+                // Gestionnaire d'erreur
+                audio.onerror = function(e) {
+                    console.error('❌ Erreur de chargement audio:', soundUrl);
+                    console.error('Type d\'erreur:', e.type);
+                    console.error('Détails:', audio.error);
+                };
+                
+                // Gestionnaire de succès
+                audio.onloadeddata = function() {
+                    console.log('✅ Audio chargé:', soundUrl);
+                };
+                
+                // Définir la source
+                audio.src = soundUrl;
+                
+                // Forcer le chargement
+                audio.load();
+                
+                // Tenter la lecture
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            console.log('✅ Lecture réussie');
+                        })
+                        .catch(error => {
+                            console.error('❌ Lecture audio échouée:', error.name, error.message);
+                            console.error('URL problématique:', soundUrl);
+                        });
+                }
+            } catch (error) {
+                console.error('❌ Erreur lors de la lecture du son:', error);
+            }
+        }
+
+        // Fonction pour initialiser le contrôleur de volume
+        function initVolumeControl() {
+            const volumeSlider = document.getElementById('volume-slider');
+            const volumePercentage = document.getElementById('volume-percentage');
+            
+            if (!volumeSlider || !volumePercentage) return;
+            
+            volumeSlider.addEventListener('input', function() {
+                currentVolume = this.value / 100;
+                volumePercentage.textContent = this.value + '%';
+                
+                for (let audio of Object.values(audioCache)) {
+                    audio.volume = currentVolume;
+                }
+            });
+        }
+
+        // Fonction pour obtenir le son d'un participant
+        function getParticipantSound(matchId, position) {
+            if (tournamentData[matchId] && tournamentData[matchId][`p${position}_sound`]) {
+                return tournamentData[matchId][`p${position}_sound`];
+            }
+            return null;
+        }
+
         // Configuration du fichier JSON externe
         const EMOTES_JSON_URL = 'https://raw.githubusercontent.com/Kafalys/Tournoi-Sons-DG/refs/heads/main/Import%20Sons.json'; 
         
@@ -1017,6 +1217,11 @@
                 }
                 
                 const emotesData = await response.json();
+
+                // AJOUTEZ CE DEBUG ICI :
+                console.log('📊 Emotes chargées:', emotesData);
+                console.log('📊 Première emote:', emotesData[0]);
+                console.log('📊 La première emote a un son ?', emotesData[0]?.sound);
                 
                 // Validation basique des données
                 if (!Array.isArray(emotesData)) {
@@ -1032,9 +1237,9 @@
                 }
                 
                 defaultEmotes = emotesData;
-                console.log(`✅ ${emotesData.length} emotes chargées avec succès depuis le fichier externe`);
-                return true;
-                
+                preloadSounds(); // Sans await - ne bloque pas
+                console.log(`✅ ${emotesData.length} emotes chargées avec succès depuis le fichier externe`);                
+
             } catch (error) {
                 console.warn('❌ Erreur lors du chargement du fichier JSON externe:', error.message);
                 console.log('🔄 Utilisation des emotes de fallback...');
@@ -1134,6 +1339,16 @@
             participants[position].classList.add('winner');
             participants[1 - position].classList.add('eliminated');
             
+            // CETTE PARTIE EST CRUCIALE POUR JOUER LE SON
+            const soundUrl = getParticipantSound('third-place', position);
+            if (soundUrl) {
+                console.log('Lecture du son de 3ème place:', soundUrl);
+                playSound(soundUrl);
+            } else {
+                console.warn('Aucun son trouvé pour third-place position', position);
+            }
+            
+            // Reste de la fonction...
             const thirdPlaceDiv = document.getElementById('third-place');
             thirdPlaceDiv.innerHTML = '';
             const winnerImg = participants[position].querySelector('img');
@@ -1154,7 +1369,6 @@
             tournamentData['third-place'].winner = position;
             localStorage.setItem('tournamentData', JSON.stringify(tournamentData));
         }
-
         function createClickEmote(x, y) {
             const randomEmote = defaultEmotes[Math.floor(Math.random() * defaultEmotes.length)];
             
@@ -1382,6 +1596,16 @@
             winner.classList.remove('eliminated');
             loser.classList.add('eliminated');
             loser.classList.remove('winner');
+
+            // DÉBOGAGE : Vérifier ce qui est stocké
+                console.log('Match ID:', matchId);
+                console.log('Position gagnante:', position);
+                console.log('Données du match:', tournamentData[matchId]);
+
+            const soundUrl = getParticipantSound(matchId, position);
+            if (soundUrl) {
+                playSound(soundUrl);
+            }   
             
             if (!tournamentData[matchId]) {
                 tournamentData[matchId] = {};
@@ -1480,8 +1704,11 @@
                     if (winnerName) {
                         tournamentData[nextMatchId][`p${nextPosition}_name`] = winnerName;
                     }
-                }
-                
+                    const winnerSound = getParticipantSound(fromMatchId, winner.dataset.position);
+                    if (winnerSound) {
+                        tournamentData[nextMatchId][`p${nextPosition}_sound`] = winnerSound;
+                    }
+                }                
                 nextParticipant.classList.remove('winner', 'eliminated');
                 animateAdvancement(nextParticipant);
             }
@@ -1512,17 +1739,67 @@
                 const thirdPlaceMatch = document.getElementById('third-place-bracket');
                 const thirdPlaceParticipants = thirdPlaceMatch.querySelectorAll('.participant');
                 
+                // Initialiser l'objet pour stocker les données
+                if (!tournamentData['third-place']) {
+                    tournamentData['third-place'] = {};
+                }
+                
                 if (loser1) {
+                    // Copier l'image et le nom
                     copyParticipantData(loser1, thirdPlaceParticipants[0]);
+                    
+                    // NOUVEAU : Récupérer et stocker le son du perdant
+                    const loser1Sound = getParticipantSound('r3_m0', loser1.dataset.position);
+                    const loser1Name = getParticipantName('r3_m0', loser1.dataset.position);
+                    const loser1Image = getParticipantData('r3_m0', loser1.dataset.position);
+                    
+                    if (loser1Sound) {
+                        tournamentData['third-place']['p0_sound'] = loser1Sound;
+                        console.log('Son transféré pour p0:', loser1Sound);
+                    }
+                    if (loser1Name) {
+                        tournamentData['third-place']['p0_name'] = loser1Name;
+                    }
+                    if (loser1Image) {
+                        tournamentData['third-place']['p0'] = loser1Image;
+                    }
+                    
+                    // Ajouter l'event handler onclick
+                    thirdPlaceParticipants[0].onclick = function() { selectThirdPlaceWinner(0); };
+                    
                     animateAdvancement(thirdPlaceParticipants[0]);
                 }
+                
                 if (loser2) {
+                    // Copier l'image et le nom
                     copyParticipantData(loser2, thirdPlaceParticipants[1]);
+                    
+                    // NOUVEAU : Récupérer et stocker le son du perdant
+                    const loser2Sound = getParticipantSound('r3_m1', loser2.dataset.position);
+                    const loser2Name = getParticipantName('r3_m1', loser2.dataset.position);
+                    const loser2Image = getParticipantData('r3_m1', loser2.dataset.position);
+                    
+                    if (loser2Sound) {
+                        tournamentData['third-place']['p1_sound'] = loser2Sound;
+                        console.log('Son transféré pour p1:', loser2Sound);
+                    }
+                    if (loser2Name) {
+                        tournamentData['third-place']['p1_name'] = loser2Name;
+                    }
+                    if (loser2Image) {
+                        tournamentData['third-place']['p1'] = loser2Image;
+                    }
+                    
+                    // Ajouter l'event handler onclick
+                    thirdPlaceParticipants[1].onclick = function() { selectThirdPlaceWinner(1); };
+                    
                     animateAdvancement(thirdPlaceParticipants[1]);
                 }
+                
+                // Sauvegarder les données
+                localStorage.setItem('tournamentData', JSON.stringify(tournamentData));
             }
         }
-
         function copyParticipantData(source, target) {
             const sourceImg = source.querySelector('img');
             let targetImg = target.querySelector('img');
@@ -1774,9 +2051,15 @@
         }
 
         function distributeEmotesRandomly(emotesData) {
-            tournamentData = {};
+            console.log('🎲 Distribution des emotes...');
+            console.log('🎲 Nombre d\'emotes reçues:', emotesData.length);
+            console.log('🎲 Exemple d\'emote:', emotesData[0]);
+            console.log('🎲 Cette emote a un son ?', emotesData[0]?.sound);
 
+            tournamentData = {};
             const shuffledEmotes = shuffleArray([...emotesData]);
+
+            console.log('🎲 Après mélange, première emote:', shuffledEmotes[0]);
 
             // Pré-sélection: 8 emotes dans 4 matchs
             for (let matchIndex = 0; matchIndex < 4; matchIndex++) {
@@ -1790,63 +2073,87 @@
 
                 if (emoteIndex1 < shuffledEmotes.length) {
                     const emote = shuffledEmotes[emoteIndex1];
+                    console.log(`🔊 Match ${matchId} p0:`, emote.name, 'son:', emote.sound);
+                    
                     tournamentData[matchId][`p0`] = emote.image;
                     tournamentData[matchId][`p0_name`] = emote.name;
+                    if (emote.sound) {
+                        tournamentData[matchId][`p0_sound`] = emote.sound;
+                        console.log('✅ Son stocké pour p0');
+                    } else {
+                        console.warn('⚠️ Pas de son pour cette emote');
+                    }
                 }
 
                 if (emoteIndex2 < shuffledEmotes.length) {
                     const emote = shuffledEmotes[emoteIndex2];
+                    console.log(`🔊 Match ${matchId} p1:`, emote.name, 'son:', emote.sound);
+                    
                     tournamentData[matchId][`p1`] = emote.image;
                     tournamentData[matchId][`p1_name`] = emote.name;
+                    if (emote.sound) {
+                        tournamentData[matchId][`p1_sound`] = emote.sound;
+                        console.log('✅ Son stocké pour p1');
+                    } else {
+                        console.warn('⚠️ Pas de son pour cette emote');
+                    }
                 }
             }
+
+            // Après la boucle, vérifiez ce qui a été stocké :
+            console.log('📦 Données de pre_m0:', tournamentData['pre_m0']);
 
             // Premier tour: 28 emotes directes + 4 places réservées pour les gagnants de pré-sélection
             // 16 matchs (r0_m0 à r0_m15)
             // Matchs 0-3: position 1 pour les emotes directes (position 0 réservée pour pré-sélection)
             // Matchs 4-15: les deux positions pour les emotes directes
-            
+
             let directEmoteIndex = 8; // Commencer après les 8 emotes de pré-sélection
-            
+
             // Matchs 0-3: seulement position 1 (position 0 réservée pour pré-sélection)
             for (let matchIndex = 0; matchIndex < 4; matchIndex++) {
                 const matchId = `r0_m${matchIndex}`;
                 if (!tournamentData[matchId]) {
                     tournamentData[matchId] = {};
                 }
-
                 if (directEmoteIndex < shuffledEmotes.length) {
                     const emote = shuffledEmotes[directEmoteIndex];
                     tournamentData[matchId][`p1`] = emote.image;
                     tournamentData[matchId][`p1_name`] = emote.name;
+                    if (emote.sound) {
+                        tournamentData[matchId][`p1_sound`] = emote.sound;
+                    }
                     directEmoteIndex++;
                 }
             }
-            
+
             // Matchs 4-15: les deux positions
             for (let matchIndex = 4; matchIndex < 16; matchIndex++) {
                 const matchId = `r0_m${matchIndex}`;
                 if (!tournamentData[matchId]) {
                     tournamentData[matchId] = {};
                 }
-
                 // Position 0
                 if (directEmoteIndex < shuffledEmotes.length) {
                     const emote = shuffledEmotes[directEmoteIndex];
                     tournamentData[matchId][`p0`] = emote.image;
                     tournamentData[matchId][`p0_name`] = emote.name;
+                    if (emote.sound) {
+                        tournamentData[matchId][`p0_sound`] = emote.sound;
+                    }
                     directEmoteIndex++;
                 }
-
                 // Position 1
                 if (directEmoteIndex < shuffledEmotes.length) {
                     const emote = shuffledEmotes[directEmoteIndex];
                     tournamentData[matchId][`p1`] = emote.image;
                     tournamentData[matchId][`p1_name`] = emote.name;
+                    if (emote.sound) {
+                        tournamentData[matchId][`p1_sound`] = emote.sound;
+                    }
                     directEmoteIndex++;
                 }
             }
-
             localStorage.setItem('tournamentData', JSON.stringify(tournamentData));
             rebuildTournamentDisplay();
         }
@@ -1862,9 +2169,10 @@
         // Initialize tournament on page load
         document.addEventListener('DOMContentLoaded', async function() {
             // Charger les emotes depuis le fichier JSON externe
-            console.log('🔄 Chargement des emotes...');
-            await loadEmotesFromJSON();
-            
+            console.log('📄 Chargement des emotes...');
+            loadEmotesFromJSON(); // Sans await - ne bloque pas l'affichage
+            initVolumeControl();       
+
             // Load saved data if available
             const savedData = localStorage.getItem('tournamentData');
             if (savedData) {
