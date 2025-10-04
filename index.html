@@ -151,6 +151,14 @@
             backdrop-filter: blur(5px);
         }
 
+        .rp-video {
+            width: 800px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(45, 122, 255, 0.3);
+        }
+
         .title-gif-content {
             position: relative;
             background: rgba(26, 35, 50, 0.9);
@@ -1010,7 +1018,7 @@
         <!-- RP Video Modal -->
         <div class="title-gif-modal" id="rp-video-modal">
             <div class="title-gif-content">
-                <video class="title-gif-video" controls loop playsinline>
+                <video class="rp-video" controls loop playsinline>
                     <source src="https://i.imgur.com/uRMw2KA.mp4" type="video/mp4">
                     <div style="width: 800px; height: 450px; background: rgba(45, 122, 255, 0.2); display: flex; align-items: center; justify-content: center; color: #2d7aff; font-size: 24px; border-radius: 10px;">
                         Vidéo RP - Vidéo non supportée
@@ -1255,9 +1263,31 @@
         const roundNames = ['Premier Tour', '2ème Tour', 'Quarts', 'Demi-finales', 'Finale', 'Champion'];
 
         // Show/Hide functions
+        
         function showTitleGif() {
-            document.getElementById('title-gif-modal').style.display = 'flex';
+            // Tableau des deux images possibles
+            const images = [
+                'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0b9b5b51652f4617bdad48735ed00775/static/light/3.0',
+                'https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_37af84f726d14209a698d1f39bf3b0d2/static/light/3.0'
+            ];
+            
+            // Choisir une image aléatoirement
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            
+            // Trouver l'image dans le modal et changer sa source
+            const modal = document.getElementById('title-gif-modal');
+            const img = modal.querySelector('img.title-gif-video');  // ← Sélecteur plus spécifique
+            
+            if (img) {  // ← Vérification
+                img.src = randomImage;
+                console.log('Image changée pour:', randomImage);  // ← Log console
+            } else {
+                console.error('Image non trouvée dans le modal');  // ← Log d'erreur
+            }
+            
+            modal.style.display = 'flex';
         }
+
 
         function hideTitleGif() {
             document.getElementById('title-gif-modal').style.display = 'none';
